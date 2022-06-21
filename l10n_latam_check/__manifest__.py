@@ -18,46 +18,38 @@
 #
 ##############################################################################
 {
-    'name': 'Account UX',
-    'version': "14.0.0.1.0",
+    'name': 'Account Check Management',
+    'version': "1.0.0",
     'category': 'Accounting',
-    'sequence': 14,
-    'summary': '',
+    'summary': 'Checks Management',
+    'description': """
+Extends 'Check Printing Base' module to:
+* allow using own checks that are not printed but filled manually by the user
+* allow to use checkbooks to track numbering
+* add an optional "payment date" for postdated checks
+* add a menu to track own checks
+
+Also implement third checks management
+""",
     'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
-        'account',
-        "payment",
-        "base_vat",
+        'base',
+        'account_check_printing'
     ],
     'data': [
-        'security/account_ux_security.xml',
-        'wizards/account_change_currency_views.xml',
-        'wizards/res_config_settings_views.xml',
-        'wizards/account_invoice_tax_wizard_view.xml',
-        'views/account_journal_views.xml',
-        'views/payment_acquirer_views.xml',
-        'views/account_bank_statement_views.xml',
-        'views/account_move_line_views.xml',
-        'views/account_reconcile_views.xml',
-        'views/res_partner_views.xml',
-        'views/account_partial_reconcile_views.xml',
-        'views/account_account_views.xml',
-        'views/account_type_views.xml',
-        'views/account_move_views.xml',
         'data/account_payment_method_data.xml',
-        'data/mail_data.xml',
-        'data/ir_parameters_data.xml',
+        'security/ir.model.access.csv',
+        'views/account_payment_view.xml',
+        'views/l10n_latam_checkbook_view.xml',
+        'views/account_journal_view.xml',
+        'wizards/account_payment_register_views.xml',
+        'wizards/account_payment_mass_transfer_views.xml',
     ],
-    'demo': [
-    ],
+
     'installable': True,
-    # lo hacemos auto install porque este repo no lo podemos agregar en otros
-    # por build de travis (ej sipreco) y queremos que para runbot se auto
-    # instale
-    'auto_install': True,
-    'application': False,
+    'auto_install': False,
+    'application': True,
 }
